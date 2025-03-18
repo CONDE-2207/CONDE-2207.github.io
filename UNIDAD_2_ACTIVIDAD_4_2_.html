@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Unidad 2 Actividad 04-2</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="utf-8">
+    <meta name="Autor" content="CONDE CORPUS JOSE DANIEL">
+    <meta name="Fecha" content="Viernes 14 de marzo de 2025">
+    <meta name="Resumen" content="TIPOGRAFIA">
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: left;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            font-family: 'Arial Black', sans-serif;
+            color: #007bff;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            font-family: 'Georgia', serif;
+            color: #6c757d;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        li {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 8px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #e9ecef;
+        }
+
+        #character-details {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .character-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .character-container img {
+            width: 200px;
+            height: auto;
+            object-fit: contain;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            order: 2; /* Mueve la imagen al final (derecha) */
+            margin-left: 0; /* Elimina el margen izquierdo */
+            margin-right: 20px; /* Añade margen a la derecha */
+        }
+
+        .character-container div {
+            flex-grow: 1;
+            order: 1; /* Asegura que la información esté antes de la imagen */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>UNIDAD 2 ACTIVIDAD 04-2:: TEMA (Lista, tablas e imágenes)</h1>
+    <h2>MARIO BROS ~ PERSONAJES</h2>
+
+    <ul>
+        <li onclick="showCharacter('mario')">MARIO</li>
+        <li onclick="showCharacter('luigi')">LUIGI</li>
+        <li onclick="showCharacter('bowser')">BOWSER</li>
+        <li onclick="showCharacter('peach')">PEACH</li>
+        <li onclick="showCharacter('donkeykong')">DONKEY KONG</li>
+    </ul>
+
+    <div id="character-details"></div>
+
+    <script>
+        function showCharacter(character) {
+            let details = '';
+            let imageUrl = '';
+
+            switch (character) {
+                case 'mario':
+                    details = `
+                        <h2>MARIO</h2>
+                        <table>
+                            <tr><th>Name</th><td>Mario Mario</td></tr>
+                            <tr><th>Occupation</th><td>Plumber, Hero</td></tr>
+                            <tr><th>Abilities</th><td>Jumping, Power-ups, Versatility</td></tr>
+                            <tr><th>First Appearance</th><td>Donkey Kong (1981)</td></tr>
+                            <tr><th>Characteristics</th><td>Red cap, Blue overalls, Moustache, Cheerful</td></tr>
+                        </table>
+                    `;
+                    imageUrl = '<img src="https://i0.wp.com/eltallerdehector.com/wp-content/uploads/2022/07/super-mario-bros.png?resize=800,800&ssl=1" alt="Mario">';
+                    break;
+                case 'luigi':
+                    details = `
+                        <h2>LUIGI</h2>
+                        <table>
+                            <tr><th>Name</th><td>Luigi Mario</td></tr>
+                            <tr><th>Occupation</th><td>Plumber, Hero</td></tr>
+                            <tr><th>Abilities</th><td>Higher Jump, Ghost Hunting, Cowardly Hero</td></tr>
+                            <tr><th>First Appearance</th><td>Mario Bros. (1983)</td></tr>
+                            <tr><th>Characteristics</th><td>Green cap, Green overalls, Taller, Nervous</td></tr>
+                        </table>
+                    `;
+                    imageUrl = '<img src="https://th.bing.com/th/id/OIP.-30CV2s1L0haQ7sqDkBebQHaHa?rs=1&pid=ImgDetMain" alt="Luigi">';
+                    break;
+                case 'bowser':
+                    details = `
+                        <h2>BOWSER</h2>
+                        <table>
+                            <tr><th>Name</th><td>Bowser Koopa</td></tr>
+                            <tr><th>Occupation</th><td>King of the Koopas, Villain</td></tr>
+                            <tr><th>Abilities</th><td>Fire Breath, Strength, Shell Attacks</td></tr>
+                            <tr><th>First Appearance</th><td>Super Mario Bros. (1985)</td></tr>
+                            <tr><th>Characteristics</th><td>Spiked Shell, Fire Breath, Large, Evil</td></tr>
+                        </table>
+                    `;
+                    imageUrl = '<img src="https://i.pinimg.com/736x/c0/6a/a9/c06aa936c476191dd53828948202b088.jpg" alt="Bowser">';
+                    break;
+                case 'peach':
+                    details = `
+                        <h2>PEACH</h2>
+                        <table>
+                            <tr><th>Name</th><td>Princess Peach Toadstool</td></tr>
+                            <tr><th>Occupation</th><td>Princess of the Mushroom Kingdom</td></tr>
+                            <tr><th>Abilities</th><td>Floating, Heart Power, Kindness</td></tr>
+                            <tr><th>First Appearance</th><td>Super Mario Bros. (1985)</td></tr>
+                            <tr><th>Characteristics</th><td>Pink Dress, Blonde Hair, Crown, Gentle</td></tr>
+                        </table>
+                    `;
+                    imageUrl = '<img src="https://eltallerdehector.com/wp-content/uploads/2022/08/princess-peach-mario-bross.png" alt="Peach">';
+                    break;
+                case 'donkeykong':
+                    details = `
+                        <h2>DONKEY KONG</h2>
+                        <table>
+                            <tr><th>Name</th><td>Donkey Kong</td></tr>
+                            <tr><th>Occupation</th><td>Jungle Protector, Hero</td></tr>
+                            <tr><th>Abilities</th><td>Strength, Climbing, Barrel Throwing</td></tr>
+                            <tr><th>First Appearance</th><td>Donkey Kong (1981)</td></tr>
+                            <tr><th>Characteristics</th><td>Large Ape, Red Tie, Powerful, Adventurous</td></tr>
+                        </table>
+                    `;
+                    imageUrl = '<img src="https://th.bing.com/th/id/OIP.Y6WBgGEOUY2YgRRRSgujsgHaHa?rs=1&pid=ImgDetMain" alt="Donkey Kong">';
+                    break;
+            }
+
+            document.getElementById('character-details').innerHTML = `<div class="character-container">${details}${imageUrl}</div>`;
+        }
+    </script>
+
+</body>
+
+</html>
