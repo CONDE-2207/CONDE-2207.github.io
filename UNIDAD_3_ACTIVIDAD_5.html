@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Unidad 3 | Actividad 5 (Formulario)</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="utf-8">
+    <meta name="Autor" content="CONDE CORPUS JOSE DANIEL">
+    <meta name="Fecha" content="12-05-2025">
+    <meta name="Inscripción" content="Formulario">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDxyJxW0WIjzOUjGji2pQPBYjhl" crossorigin="anonymous">
+</head>
+<body>
+    <script>
+        function revisiondatos(){
+            let varCadena = "Resumen del Formulario:\n";
+            let varNombre = document.getElementById("txtNombre").value;
+            let varTelefono = document.getElementById("txtTelefono").value;
+            let varCorreo = document.getElementById("txtCorreo").value;
+            let varMensaje = document.getElementById("txtMensaje").value;
+
+            varCadena = varCadena + "Nombre de usuario: " + varNombre + "\n";
+            varCadena = varCadena + "Teléfono: " + varTelefono + "\n";
+            varCadena = varCadena + "Correo: " + varCorreo + "\n";
+            varCadena = varCadena + "Mensaje: " + varMensaje + "\n";
+
+            alert(varCadena);
+        }
+    </script>
+    <header></header>
+    <main>
+        <h3>Unidad 3 | Actividad 5 (Formulario)</h3>
+        <form name="frmRegistro" action="#" method="post">
+            <fieldset>
+                <legend>Registro de Usuario</legend>
+                <div class="form-group">
+                    <label class="form-label mt-4" for="txtNombre">Nombre de usuario</label>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="txtNombre" placeholder="INGRESA TU NOMBRE " class="form-control input-md" required="">
+                        <span class="form-text text-muted">Escribe tu nombre completo</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mt-4" for="passclave">Contraseña</label>
+                    <div class="col-md-4">
+                        <input id="passclave" name="passclave" type="password" placeholder="Introduce aquí tu contraseña" class="form-control input-md" required="">
+                        <span class="form-text text-muted">Debe tener al menos 8 símbolos (únicamente letras y dígitos)</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mt-4" for="txtTelefono">Teléfono</label>
+                    <div class="col-md-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">+52</span>
+                            <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" placeholder="(444) " type="text" required="">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mt-4" for="txtCorreo">Correo electrónico</label>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input id="txtCorreo" name="txtCorreo" type="email" placeholder="ejemplo@upaep.edu.mx" class="form-control" required="">
+                            <span class="input-group-text">@upaep.edu.mx</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label mt-4" for="txtMensaje">Mensaje (Opcional)</label>
+                    <div class="col-md-4">
+                        <textarea class="form-control" id="txtMensaje" name="txtMensaje" rows="5"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="enviar"></label>
+                    <div class="col-md-4">
+                        <button id="enviar" name="enviar" class="btn btn-primary" onclick="revisiondatos()">Enviar</button>
+                        <input type="reset" id="btnBorrar" name="btnBorrar" class="btn btn-danger">
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </main>
+    <footer></footer>
+</body>
+</html>
