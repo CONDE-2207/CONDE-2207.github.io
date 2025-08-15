@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zapatería Bicentenario | Calzado de Calidad</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2B48C;
+            --accent: #CD853F;
+            --light: #F5F5DC;
+            --dark: #3E2723;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        /* Navigation */
+        .navbar {
+            background: rgba(62, 39, 35, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--white);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: none;
+        }
+        
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .navbar-menu li {
+            margin: 0 15px;
+        }
+        
+        .navbar-menu a {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-menu a:hover,
+        .navbar-menu a.active {
+            color: var(--white);
+        }
+        
+        .navbar-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .navbar-menu a:hover::after,
+        .navbar-menu a.active::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            text-transform: uppercase;
+            animation: fadeInDown 1.2s ease;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: 0 auto 2.5rem;
+            color: var(--white);
+            animation: fadeInUp 1.2s ease 0.3s forwards;
+            opacity: 0;
+        }
+        
+        .btn {
+            background: var(--primary);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease 0.6s forwards;
+            opacity: 0;
+            color: var(--white);
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            color: var(--dark);
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            text-align: center;
+        }
+        
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .mission-vision {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .mv-card {
+            flex: 1;
+            min-width: 300px;
+            background: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .mv-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+        
+        .mv-card h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .mv-card ul {
+            padding-left: 20px;
+            list-style: none;
+        }
+        
+        .mv-card li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .mv-card li::before {
+            content: "✓";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Catalog Section */
+        .catalog-section {
+            background: linear-gradient(to bottom, var(--light) 0%, #f0f0f0 100%);
+        }
+        
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .category-btn {
+            padding: 10px 25px;
+            background: var(--white);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn.active, 
+        .category-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-img {
+            height: 250px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .product-category {
+            color: var(--accent);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Distributors Section */
+        .distributors-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: var(--white);
+        }
+        
+        .distributor-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .distributor-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .distributor-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .distributor-card h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+        
+        .distributor-card p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .distributor-card i {
+            margin-right: 10px;
+            color: var(--secondary);
+            width: 20px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column p, 
+        .footer-column li {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .navbar-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                background: rgba(62, 39, 35, 0.95);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                transition: all 0.4s ease;
+            }
+            
+            .navbar-menu.active {
+                left: 0;
+            }
+            
+            .navbar-menu li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .distributor-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#page-top" class="navbar-brand">ZAPATERÍA BICENTENARIO</a>
+            <ul class="navbar-menu" id="navbarMenu">
+                <li><a href="#about" class="active">ACERCA DE NOSOTROS</a></li>
+                <li><a href="#catalog">CATÁLOGO</a></li>
+                <li><a href="#distributors">SUCURSALES</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ZAPATERÍA BICENTENARIO</h1>
+            <p>CAMINA SIN MIEDO HACIA LA COMODIDAD Y SIENTE LIBRE POR DONDE VAYAS</p>
+            <a href="#catalog" class="btn">DESCUBRE NUESTROS ZAPATOS</a>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Acerca de Nosotros</h2>
+            </div>
+            <div class="about-content">
+                <p>Somos una Empresa 100% de origen Mexicano que busca ofrecerte una excelente variedad de opciones de calzado para tu gusto y estilo personal.</p>
+                <p>Zapatería Bicentenario tiene 29 años de experiencia en el ramo del Calzado para todas las personas, esta es una Empresa que se llevó, consolidó y busca ser el Líder en la Venta de Calzado por Catálogo en todo el país.</p>
+                
+                <div class="mission-vision">
+                    <div class="mv-card">
+                        <h3>Nuestra Misión</h3>
+                        <p>Es ofrecer todo tipo de calzado hacia el público general ofreciéndoles ser una gran opción por nuestra modernidad y comodidad para su calzado de acuerdo a las normas de calidad actuales de nuestro país.</p>
+                    </div>
+                    
+                    <div class="mv-card">
+                        <h3>Nuestros Objetivos</h3>
+                        <ul>
+                            <li>Ofrecerle a nuestros clientes una amplia gama de modelos y estilos utilizando materiales de alta calidad.</li>
+                            <li>Ponemos al alcance de todo el público todos nuestros productos en cualquier parte del país.</li>
+                            <li>Buscamos retroalimentarnos con todos nuestros clientes y distribuidores para generar nuevos e innovadores estilos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Catalog Section -->
+    <section class="section catalog-section" id="catalog">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Catálogo</h2>
+            </div>
+            
+            <div class="categories">
+                <button class="category-btn active" data-category="all">Todos</button>
+                <button class="category-btn" data-category="deportivo">Deportivos</button>
+                <button class="category-btn" data-category="dama">Damas</button>
+            </div>
+            
+            <div class="products">
+                <!-- Zapatos deportivos -->
+                <div class="product-card" data-category="deportivo">
+                    <div class="product-img">
+                        <img src= "https://th.bing.com/th/id/R.bdfd685f6548b879a77b04fd41e5a0b4?rik=6ToO5gp2j24T7g&riu=http%3a%2f%2ffr.ronashoes.com%2fcdn%2fshop%2fproducts%2fRona_Shoes_Safety_Delta_Blue_Steel_Toe_Caps_S3_For_Man_Woman_2.jpg%3fv%3d1676290415&ehk=b2iAJBsd2T3L5k%2fipzAKCxPxMCBb3UYraPqBpVfQRBs%3d&risl=&pid=ImgRaw&r=0" Calzado deportivo Piloti DTM">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Deportivo · Caballeros</div>
+                        <h3 class="product-title">Calzado deportivo Piloti DTM</h3>
+                        <div class="product-price">€155.00</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="deportivo">
+                    <div class="product-img">
+                        <img src="https://tse2.mm.bing.net/th/id/OIP.rBRAE617j-o5WAGJmU0koQHaHa?w=612&h=612&rs=1&pid=ImgDetMain&o=7&rm=3 alt="Calzado Piloti">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Deportivo · Unisex</div>
+                        <h3 class="product-title">Calzado Piloti</h3>
+                        <div class="product-price">€147.00</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="deportivo">
+                    <div class="product-img">
+                        <img src= "https://tse3.mm.bing.net/th/id/OIP.E3MtPCS2zEHVjDty4lQbKwHaHU?w=735&h=727&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Calzado deportivo Piloti">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Deportivo · Caballeros</div>
+                        <h3 class="product-title">Calzado deportivo Piloti</h3>
+                        <div class="product-price">€155.00</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="deportivo">
+                    <div class="product-img">
+                        <img src=https://images-na.ssl-images-amazon.com/images/I/71vZx8ppQ0L._AC_SL1500_.jpg alt="Zapato Replica HIGH">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Deportivo · Caballeros</div>
+                        <h3 class="product-title">Zapato Replica HIGH</h3>
+                        <div class="product-price">€98.00</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="deportivo">
+                    <div class="product-img">
+                        <img src=https://tse3.mm.bing.net/th/id/OIP.pUIEJTMRW-FQGEnxofSB5QHaGy?rs=1&pid=ImgDetMain&o=7&rm=3 alt="Zapato Replica MID">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Deportivo · Caballeros</div>
+                        <h3 class="product-title">Zapato Replica MID</h3>
+                        <div class="product-price">€92.00</div>
+                    </div>
+                </div>
+                
+                <!-- Zapatillas para dama -->
+                <div class="product-card" data-category="dama">
+                    <div class="product-img">
+                        <img src="https://http2.mlstatic.com/D_NQ_NP_719017-MLM69741456567_052023-O.webp alt=" "Alessia in nero">
+                    </div> 
+                    <div class="product-info">
+                        <div class="product-category">Damas · Tacón</div>
+                        <h3 class="product-title">Alessia in nero</h3>
+                        <div class="product-price">€170.52</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="dama">
+                    <div class="product-img">
+                        <img src="https://tse2.mm.bing.net/th/id/OIP.zqe8MUaDXfed5Wdb6iPVAgHaHa?w=1050&h=1050&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Agostina">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Damas · Casual</div>
+                        <h3 class="product-title">Agostina</h3>
+                        <div class="product-price">€128.24</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="dama">
+                    <div class="product-img">
+                        <img src="https://tse2.mm.bing.net/th/id/OIP.7gt7ERWPjFNVnn9txw5KdgHaE7?w=1280&h=853&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Giuliana">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Damas · Sandalia</div>
+                        <h3 class="product-title">Giuliana</h3>
+                        <div class="product-price">€94.25</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="dama">
+                    <div class="product-img">
+                        <img src="https://www.aquimoda.com/wp-content/uploads/2011/06/calzados-dama1.jpg" alt="Gloria in nero">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Damas · Tacón Alto</div>
+                        <h3 class="product-title">Gloria in nero</h3>
+                        <div class="product-price">€168.20</div>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="dama">
+                    <div class="product-img">
+                        <img src="https://th.bing.com/th/id/R.c67e759053d4a9a4c282742e82175a7f?rik=GAbRPv0VZ6o%2flA&riu=http%3a%2f%2f1.bp.blogspot.com%2f-448hebHe6C8%2fUuhRPx-dLEI%2fAAAAAAABUSA%2f1ZH0uiUCvyk%2fs1600%2fzapatos%2bpara%2bfiestas%2bde%2b15%2ba%C3%B1os%2b(19).JPG&ehk=yPXlY2ptc%2bPS%2fQMTBq7xvJJpkkMBRVNv2aZfpSzo4Bk%3d&risl=&pid=ImgRaw&r=0" alt="Beatrice">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">Damas · Casual</div>
+                        <h3 class="product-title">Beatrice</h3>
+                        <div class="product-price">€121.80</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Distributors Section -->
+    <section class="section distributors-section" id="distributors">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestras Sucursales</h2>
+            </div>
+            
+            <div class="distributor-cards">
+                <div class="distributor-card">
+                    <h3>Sucursal R32</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. del Rosario No.32</p>
+                    <p><i class="fas fa-building"></i> Col. San Martin Xochimahune</p>
+                    <p><i class="fas fa-map-pin"></i> C.N. 52219, Ascapazolico</p>
+                    <p><i class="fas fa-city"></i> Mexico, D.F.</p>
+                    <p><i class="fas fa-phone"></i> Tel. (55) 57-29-26-00</p>
+                </div>
+                
+                <div class="distributor-card">
+                    <h3>Sucursal Iziapalapa</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Tizhius No.74</p>
+                    <p><i class="fas fa-building"></i> Col. Santa Isabel Industrial</p>
+                    <p><i class="fas fa-map-pin"></i> C.P. 90820, Iztiapalapa</p>
+                    <p><i class="fas fa-city"></i> Mexico, D.F.</p>
+                    <p><i class="fas fa-phone"></i> Tel. (55) 55-81-95-45, 55-81-95-46</p>
+                </div>
+                
+                <div class="distributor-card">
+                    <h3>Sucursal 5 de Febrero</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 5 de Febrero No.35-B</p>
+                    <p><i class="fas fa-building"></i> Col. Centro</p>
+                    <p><i class="fas fa-map-pin"></i> C.P. 66880, Cuauhtonesc</p>
+                    <p><i class="fas fa-city"></i> Mexico, D.F.</p>
+                    <p><i class="fas fa-phone"></i> Tel. (55) 57-09-16-94</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Zapatería Bicentenario</h3>
+                    <p>Calzado de calidad que combina tradición e innovación para ofrecerte la mejor experiencia en cada paso.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#about">Acerca de Nosotros</a></li>
+                        <li><a href="#catalog">Catálogo</a></li>
+                        <li><a href="#distributors">Sucursales</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contáctanos</h3>
+                    <p><i class="fas fa-envelope"></i> info@zapateriabicentenario.com</p>
+                    <p><i class="fas fa-phone"></i> (55) 1234-5678</p>
+                    <p><i class="fas fa-clock"></i> Lunes a Sábado: 9:00 AM - 8:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Zapatería Bicentenario. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navbarMenu = document.getElementById('navbarMenu');
+        
+        menuToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navbarMenu.classList.remove('active');
+                }
+            });
+        });
+        
+        // Category filtering
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const products = document.querySelectorAll('.product-card');
+        
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                products.forEach(product => {
+                    const productCategory = product.getAttribute('data-category');
+                    
+                    if (category === 'all' || productCategory === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Animate products on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const productObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.5s forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        products.forEach(product => {
+            productObserver.observe(product);
+        });
+        
+        // Active navigation on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.navbar-menu a');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
